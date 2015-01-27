@@ -195,12 +195,11 @@ void MinIMU9AHRS_setup()
   counter=0;
 }
 
-void MinIMU9AHRS_loop() //Main Loop
+boolean MinIMU9AHRS_loop() //Main Loop
 {
-/*
+    // The integration stuff needs to know how fast we're running
   if((millis()-timer)>=20)  // Main loop runs at 50Hz
   {
-*/
     counter++;
     timer_old = timer;
     timer=millis();
@@ -226,11 +225,10 @@ void MinIMU9AHRS_loop() //Main Loop
     Normalize();
     Drift_correction();
     Euler_angles();
+    return true;
     // ***
-/*   
-    printdata();
   }
-*/
+  return false;
    
 }
 /*
